@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stiward Orozco Galindo | Elite B2B Commercial Leader & AI Architect</title>
+    <!-- Assets -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #030508;
+            --card: #0a0e14;
+            --accent: #00f2ff;
+            --purple: #7000ff;
+            --success: #25d366;
+            --text: #ffffff;
+            --text-dim: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--text); font-family: var(--font-main); overflow-x: hidden; }
+
+        /* Floating Animation Utility */
+        .hover-lift { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease; cursor: pointer; }
+        .hover-lift:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 40px rgba(0, 242, 255, 0.15); border-color: var(--accent) !important; }
+
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+        .gradient-text { background: linear-gradient(90deg, var(--accent), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* Nav */
+        nav { position: fixed; top: 0; width: 100%; height: 85px; background: rgba(3, 5, 8, 0.9); backdrop-filter: blur(25px); z-index: 1000; border-bottom: 1px solid var(--border); }
+        nav .container { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+        .user-logo { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--accent); overflow: hidden; box-shadow: 0 0 20px rgba(0, 242, 255, 0.3); }
+        .user-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 85px; position: relative; }
+        h1 { font-size: clamp(3rem, 11vw, 7rem); font-weight: 800; line-height: 0.82; margin-bottom: 25px; letter-spacing: -3px; }
+        .hero p { font-size: 1.35rem; color: var(--text-dim); max-width: 900px; line-height: 1.6; margin-bottom: 45px; }
+        .btn { padding: 20px 40px; border-radius: 14px; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; gap: 15px; transition: 0.3s; font-size: 1rem; }
+        .btn-wa { background: var(--success); color: white; }
+        .btn-li { background: #0077b5; color: white; }
+        .btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+
+        /* Tech Badges */
+        .tech-arsenal { padding: 50px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .badge-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 15px; align-items: center; }
+        .badge-label { color: #555; font-family: var(--font-mono); font-size: 0.85rem; width: 90px; font-weight: 800; }
+        .badge-group { display: flex; border-radius: 6px; overflow: hidden; font-family: var(--font-mono); font-size: 0.75rem; border: 1px solid #333; transition: 0.3s; }
+        .badge-group:hover { transform: scale(1.1); border-color: var(--accent); }
+        .badge-l { background: #333; color: #fff; padding: 5px 12px; }
+        .badge-r { background: var(--accent); color: #000; padding: 5px 12px; font-weight: 800; }
+
+        /* Experience Dashboard */
+        .exp-section { padding: 120px 0; display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; }
+        .kpi-cards { display: flex; flex-direction: column; gap: 30px; }
+        .kpi-box { background: var(--card); border: 1px solid var(--border); padding: 45px; border-radius: 28px; }
+        .kpi-box h4 { font-size: 4.2rem; font-weight: 800; color: var(--accent); line-height: 1; }
+        .timeline { background: var(--card); border: 1px solid var(--border); padding: 55px; border-radius: 35px; }
+        .timeline-item { border-left: 2px solid var(--accent); padding-left: 30px; margin-bottom: 50px; position: relative; }
+        .timeline-item::after { content: ''; position: absolute; left: -7px; top: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 15px var(--accent); }
+
+        /* Proyectos Desarrollados */
+        .projects-section { padding-bottom: 120px; }
+        .browser { background: #0d1117; border-radius: 28px; border: 1px solid var(--border); overflow: hidden; margin-top: 50px; box-shadow: 0 50px 100px rgba(0,0,0,0.7); }
+        .browser-h { background: #161b22; padding: 18px 30px; display: flex; align-items: center; gap: 12px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .browser-b { padding: 60px; background: #0a0e14; position: relative; }
+        .ai-console { background: #010101; border: 1px solid var(--accent); border-radius: 14px; padding: 30px; margin-top: 30px; font-family: var(--font-mono); font-size: 0.85rem; display: none; animation: slideIn 0.5s ease forwards; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Reviews */
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; padding-bottom: 120px; }
+        .rev-card { background: var(--card); padding: 45px; border-radius: 30px; border-left: 8px solid var(--accent); }
+
+        /* Footer */
+        footer { padding: 100px 0; border-top: 1px solid var(--border); text-align: center; }
+        .f-icons { display: flex; justify-content: center; gap: 45px; margin-bottom: 40px; font-size: 2.2rem; }
+        .f-icons a { color: var(--text-dim); transition: 0.3s; }
+        .f-icons a:hover { color: var(--accent); transform: scale(1.2) rotate(5deg); }
+
+        /* Elite Chat Bot */
+        .bot-trigger { position: fixed; bottom: 35px; right: 35px; width: 70px; height: 70px; border-radius: 50%; background: var(--accent); color: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 20px 50px rgba(0, 242, 255, 0.4); z-index: 2000; cursor: pointer; transition: 0.3s; }
+        .bot-trigger:hover { transform: scale(1.1) rotate(-15deg); }
+        .chat-ui { position: fixed; bottom: 120px; right: 35px; width: 380px; background: var(--card); border: 1px solid var(--accent); border-radius: 28px; display: none; flex-direction: column; z-index: 2100; overflow: hidden; box-shadow: 0 50px 120px rgba(0,0,0,0.9); }
+        .chat-h { background: var(--accent); color: var(--bg); padding: 20px; font-weight: 800; display: flex; justify-content: space-between; }
+        .chat-b { height: 350px; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; font-size: 0.9rem; }
+        .m { padding: 14px 18px; border-radius: 14px; max-width: 85%; line-height: 1.5; }
+        .m-bot { background: rgba(255,255,255,0.05); align-self: flex-start; border-bottom-left-radius: 2px; }
+        .m-user { background: var(--purple); align-self: flex-end; border-bottom-right-radius: 2px; }
+        .chat-f { padding: 20px; border-top: 1px solid var(--border); display: flex; gap: 12px; }
+        .chat-f input { flex: 1; background: transparent; border: 1px solid var(--border); padding: 12px; border-radius: 10px; color: white; outline: none; }
+        .chat-f button { background: var(--accent); border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer; }
+
+        @media (max-width: 900px) {
+            .exp-section { grid-template-columns: 1fr; }
+            h1 { font-size: 3.5rem; }
+            .chat-ui { width: 90%; right: 5%; bottom: 100px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo" style="font-weight: 800; font-size: 1.3rem;">SOG.<span class="gradient-text">ENTERPRISE</span></div>
+            <div class="user-logo">
+                <img src="Logo.png" alt="Stiward Orozco Logo">
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- HERO -->
+        <section class="hero" id="hero">
+            <div style="font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 20px;">>> ELITE_SYSTEM_READY</div>
+            <h1>Stiward <br>Orozco <span class="gradient-text">Galindo</span></h1>
+            <p>
+                Líder Comercial B2B y Arquitecto de Inteligencia Artificial. 
+                Estrategia basada en el cumplimiento del 100% de KPIs operacionales y la orquestación avanzada de sistemas autónomos para el escalamiento de empresas tecnológicas globales.
+            </p>
+            <div class="hero-btns">
+                <a href="https://wa.me/573016501742" target="_blank" class="btn btn-wa hover-lift"><i class="fab fa-whatsapp"></i> AGENDAR CITA</a>
+                <a href="https://www.linkedin.com/in/stiward-orozco-galindo-39bb95165" target="_blank" class="btn btn-li hover-lift"><i class="fab fa-linkedin"></i> MI LINKEDIN</a>
+            </div>
+        </section>
+
+        <!-- TECH ARSENAL -->
+        <section class="tech-arsenal">
+            <div class="badge-row">
+                <div class="badge-label">📊 DATA</div>
+                <div class="badge-group"><div class="badge-l">Python</div><div class="badge-r" style="background:#3776ab;">SQL</div></div>
+                <div class="badge-group"><div class="badge-l">Power BI</div><div class="badge-r" style="background:#f2c811; color:black;">CRM</div></div>
+                <div class="badge-group"><div class="badge-l">Excel</div><div class="badge-r" style="background:#217346;">Advanced</div></div>
+            </div>
+            <div class="badge-row">
+                <div class="badge-label">🤖 IA</div>
+                <div class="badge-group"><div class="badge-l">OpenAI</div><div class="badge-r" style="background:var(--purple);">Agents</div></div>
+                <div class="badge-group"><div class="badge-l">Antigravity</div><div class="badge-r" style="background:var(--accent); color:black;">Builder</div></div>
+                <div class="badge-group"><div class="badge-l">Claude</div><div class="badge-r" style="background:#d97757;">Code</div></div>
+            </div>
+            <div class="badge-row">
+                <div class="badge-label">🌐 WEB</div>
+                <div class="badge-group"><div class="badge-l">HTML</div><div class="badge-r" style="background:#e34f26;">CSS</div></div>
+                <div class="badge-group"><div class="badge-l">JavaScript</div><div class="badge-r" style="background:#f7df1e; color:black;">Logic</div></div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE PRIORITY -->
+        <section class="exp-section">
+            <div class="kpi-cards">
+                <div class="kpi-box hover-lift">
+                    <h4>+$5M</h4>
+                    <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); margin-top: 15px;">USD REVENUE GENERADO EN CIERRES</p>
+                </div>
+                <div class="kpi-box hover-lift" style="border-color: var(--purple);">
+                    <h4 style="color: var(--purple);">100%</h4>
+                    <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); margin-top: 15px;">KPI COMPLIANCE EN LIDERAZGO</p>
+                </div>
+            </div>
+            <div class="timeline hover-lift">
+                <div class="timeline-item">
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--success); margin-bottom: 8px;">2021 - 2026</div>
+                    <h3 style="font-size: 1.8rem; color: var(--accent);">LÍDER DE RESTAURANTES @ RAPPI</h3>
+                    <p style="color: var(--text-dim); line-height: 1.7; margin-top: 12px;">Gestión estratégica de partners clave y orquestación de métricas de crecimiento. Optimización del ROAS mediante modelos predictivos de datos operacionales.</p>
+                </div>
+                <div class="timeline-item" style="border-left-color: var(--purple);">
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--purple); margin-bottom: 8px;">2023 - ACTUALIDAD</div>
+                    <h3 style="font-size: 1.8rem; color: var(--purple);">AI ARCHITECT & ARCHITECT</h3>
+                    <p style="color: var(--text-dim); line-height: 1.7; margin-top: 12px;">Desarrollo de agentes autónomos y sistemas web de alto impacto. Especialista en automatización de flujos B2B y despliegue de infraestructuras SaaS.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROYECTOS DESARROLLADOS -->
+        <h2 style="font-size: 3rem; margin-bottom: 30px;">Proyectos <span class="gradient-text">Desarrollados</span></h2>
+        <section class="projects-section">
+            <div class="browser hover-lift" onclick="triggerProject('p1')">
+                <div class="browser-h">
+                    <div class="dot" style="background:#ff5f56;"></div>
+                    <div class="dot" style="background:#ffbd2e;"></div>
+                    <div class="dot" style="background:#27c93f;"></div>
+                    <span class="mono" style="margin-left: 15px; opacity: 0.4; font-size: 0.7rem;">https://integrarte.ai/data-orch</span>
+                </div>
+                <div class="browser-b">
+                    <h3 style="color: var(--accent); margin-bottom: 15px;">INTEGRARTE // Master Flow</h3>
+                    <p style="color: var(--text-dim);">Motor de automatización que conecta el ecosistema B2B mediante APIs inteligentes.</p>
+                    <div id="p1" class="ai-console">
+                        <div style="color: var(--accent);">[BOOTING_AGENT_SOG]</div>
+                        >> Conectando Hubspot con OpenAI Workflow...<br>
+                        >> Procesando 12,000 logs de entrada...<br>
+                        <div style="color: var(--success); margin-top: 10px;">>> RESULT: Operación optimizada al 88%.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="browser hover-lift" style="margin-top: 60px;" onclick="triggerProject('p2')">
+                <div class="browser-h">
+                    <div class="dot" style="background:#ff5f56;"></div>
+                    <div class="dot" style="background:#ffbd2e;"></div>
+                    <div class="dot" style="background:#27c93f;"></div>
+                    <span class="mono" style="margin-left: 15px; opacity: 0.4; font-size: 0.7rem;">radar-ia.systems/v2</span>
+                </div>
+                <div class="browser-b">
+                    <h3 style="color: var(--purple); margin-bottom: 15px;">RADAR IA // Predictive Risk</h3>
+                    <p style="color: var(--text-dim);">Sistema inteligente de detección de riesgo en SLAs para equipos comerciales.</p>
+                    <div id="p2" class="ai-console" style="border-color: var(--purple);">
+                        <div style="color: var(--purple);">[SCANNING_ZONES]</div>
+                        >> Detectando latencia en drivers Zona Sur...<br>
+                        >> Ejecutando reasignación por IA...<br>
+                        <div style="color: var(--accent); margin-top: 10px;">>> STATUS: SLA Protegido (99.8%).</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS -->
+        <section class="reviews-grid">
+            <div class="rev-card hover-lift">
+                <div style="color:#f4c20d; margin-bottom: 15px;">★★★★★</div>
+                <p style="font-style:italic; color:var(--text-dim); line-height: 1.6;">"Stiward transformó nuestra operación comercial. Su capacidad para unir economía e IA es el diferencial que toda empresa tech necesita."</p>
+                <div style="margin-top: 25px; font-weight: 800; color: var(--accent); font-size: 0.85rem;">CEO // GLOBAL TECH LOGISTICS</div>
+            </div>
+            <div class="rev-card hover-lift">
+                <div style="color:#f4c20d; margin-bottom: 15px;">★★★★★</div>
+                <p style="font-style:italic; color:var(--text-dim); line-height: 1.6;">"Implementó sistemas de automatización que nos ahorraron cientos de horas. Es un orquestador nato de resultados B2B."</p>
+                <div style="margin-top: 25px; font-weight: 800; color: var(--accent); font-size: 0.85rem;">FOUNDER // SAAS ARCHITECTS</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="f-icons">
+                <a href="https://github.com/stiflerGlindo" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/stiward-orozco-galindo-39bb95165" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/573016501742" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p style="font-family: var(--font-mono); font-size: 0.65rem; opacity: 0.4;">STIWARD OROZCO GALINDO // B2B COMMERCIAL ARCHITECT // 2025</p>
+        </div>
+    </footer>
+
+    <!-- ELITE BOT -->
+    <div class="bot-trigger" onclick="toggleChat()"><i class="fas fa-robot"></i></div>
+    <div class="chat-ui" id="chat-ui">
+        <div class="chat-h">
+            <span>SOG_OS // AI_ASSISTANT</span>
+            <span onclick="toggleChat()" style="cursor: pointer;">×</span>
+        </div>
+        <div class="chat-b" id="chat-logs">
+            <div class="m m-bot">Hola. Soy el asistente estratégico de Stiward. ¿Deseas optimizar tu operación comercial o agendar una cita de negocio hoy?</div>
+        </div>
+        <div class="chat-f">
+            <input type="text" id="chat-in" placeholder="Analizar requerimiento...">
+            <button onclick="sendChat()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script>
+        function toggleChat() {
+            const ui = document.getElementById('chat-ui');
+            ui.style.display = (ui.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function sendChat() {
+            const input = document.getElementById('chat-in');
+            const logs = document.getElementById('chat-logs');
+            const q = input.value.trim().toLowerCase();
+            if(!q) return;
+
+            const uM = document.createElement('div');
+            uM.className = 'm m-user';
+            uM.innerText = input.value;
+            logs.appendChild(uM);
+            input.value = "";
+
+            setTimeout(() => {
+                const bM = document.createElement('div');
+                bM.className = 'm m-bot';
+                let r = "Analizando tu requerimiento comercial... Stiward puede optimizar tu operación. ¿Te gustaría agendar una cita directa por WhatsApp?";
+                if(q.includes("cita") || q.includes("agenda") || q.includes("si") || q.includes("optimiza") || q.includes("negocio")) {
+                    r = "He detectado una oportunidad de escalamiento. Accede aquí para agendar directamente: <br><br><a href='https://wa.me/573016501742' target='_blank' style='display:inline-block; background:var(--success); color:white; padding:10px 15px; border-radius:10px; text-decoration:none; font-weight:800;'>AGENDAR WHATSAPP</a>";
+                    bM.innerHTML = r;
+                } else {
+                    bM.innerText = r;
+                }
+                logs.appendChild(bM);
+                logs.scrollTop = logs.scrollHeight;
+            }, 800);
+            logs.scrollTop = logs.scrollHeight;
+        }
+
+        function triggerProject(id) {
+            const el = document.getElementById(id);
+            el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

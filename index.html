@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SECURITY HARDENING -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;">
     <title>Stiward Orozco Galindo | Elite B2B Commercial Leader & AI Architect</title>
     <!-- Assets -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -30,7 +32,7 @@
         .container { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
         .gradient-text { background: linear-gradient(90deg, var(--accent), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* HOVER LIFT EFFECT - THE CORE OF INTERACTIVITY */
+        /* HOVER LIFT EFFECT */
         .hover-lift { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease; cursor: pointer; }
         .hover-lift:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 40px rgba(0, 242, 255, 0.2); border-color: var(--accent) !important; }
 
@@ -90,7 +92,7 @@
         .f-icons { display: flex; justify-content: center; gap: 45px; margin-bottom: 40px; font-size: 2.2rem; }
         .f-icons a { color: var(--text-dim); transition: 0.3s; }
 
-        /* BOT */
+        /* BOT UI */
         .bot-trigger { position: fixed; bottom: 35px; right: 35px; width: 70px; height: 70px; border-radius: 50%; background: var(--accent); color: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; box-shadow: 0 20px 50px rgba(0, 242, 255, 0.4); z-index: 2000; cursor: pointer; transition: 0.3s; }
         .chat-ui { position: fixed; bottom: 120px; right: 35px; width: 400px; background: var(--card); border: 1px solid var(--accent); border-radius: 30px; display: none; flex-direction: column; z-index: 2100; overflow: hidden; box-shadow: 0 60px 150px rgba(0,0,0,1); }
         .chat-h { background: var(--accent); color: var(--bg); padding: 22px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; }
@@ -118,7 +120,7 @@
         <div class="hud-line">>> AGENT_ALPHA: SCANNING_MARKET</div>
         <div class="hud-line">>> AGENT_BETA: OPTIMIZING_KPIs</div>
         <div class="hud-line">>> AGENT_SOG: READY_FOR_CLOSING</div>
-        <a href="CV_Stiward_Orozco.html" target="_blank" class="hud-cv-btn hover-lift"><i class="fas fa-file-pdf"></i> ACCESS_CV_SYSTEM</a>
+        <a href="CV_Stiward_Orozco.html" target="_blank" rel="noopener noreferrer" class="hud-cv-btn hover-lift"><i class="fas fa-file-pdf"></i> ACCESS_CV_SYSTEM</a>
     </div>
 
     <nav>
@@ -131,7 +133,6 @@
     </nav>
 
     <div class="container">
-        <!-- HERO -->
         <section class="hero" id="hero">
             <div style="font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 20px;">>> ELITE_B2B_SYSTEM_READY</div>
             <h1>Stiward <br>Orozco <span class="gradient-text">Galindo</span></h1>
@@ -140,12 +141,11 @@
                 Transformo el rigor analítico de las ciencias económicas en sistemas de IA disruptivos que garantizan el cumplimiento del 100% de KPIs y escalan el EBITDA corporativo.
             </p>
             <div class="hero-btns">
-                <a href="https://wa.me/573016501742" target="_blank" class="btn btn-wa hover-lift"><i class="fab fa-whatsapp"></i> AGENDAR CITA</a>
-                <a href="https://www.linkedin.com/in/stiward-orozco-galindo-39bb95165" target="_blank" class="btn btn-li hover-lift"><i class="fab fa-linkedin"></i> MI LINKEDIN</a>
+                <a href="https://wa.me/573016501742" target="_blank" rel="noopener noreferrer" class="btn btn-wa hover-lift"><i class="fab fa-whatsapp"></i> AGENDAR CITA</a>
+                <a href="https://www.linkedin.com/in/stiward-orozco-galindo-39bb95165" target="_blank" rel="noopener noreferrer" class="btn btn-li hover-lift"><i class="fab fa-linkedin"></i> MI LINKEDIN</a>
             </div>
         </section>
 
-        <!-- TECH ARSENAL -->
         <section class="tech-arsenal">
             <div class="badge-row">
                 <div class="badge-label">📊 DATA</div>
@@ -166,7 +166,6 @@
             </div>
         </section>
 
-        <!-- EBITDA ORCHESTRATOR -->
         <section class="roi-section">
             <div class="roi-card hover-lift">
                 <div class="mono" style="color: var(--accent); margin-bottom: 20px;">// THE_EBITDA_ORCHESTRATOR</div>
@@ -178,7 +177,6 @@
             </div>
         </section>
 
-        <!-- EXPERIENCE -->
         <section class="exp-section">
             <div class="kpi-cards">
                 <div class="kpi-box hover-lift">
@@ -204,7 +202,6 @@
             </div>
         </section>
 
-        <!-- PROYECTOS -->
         <h2 style="font-size: 3rem; margin-bottom: 30px;">Proyectos <span class="gradient-text">Desarrollados</span></h2>
         <section class="projects-section">
             <div class="browser hover-lift" onclick="triggerProject('p1')">
@@ -218,21 +215,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="browser hover-lift" style="margin-top: 60px;" onclick="triggerProject('p2')">
-                <div class="browser-b">
-                    <h3 style="color: var(--purple); margin-bottom: 15px;">RADAR IA // Predictive Risk</h3>
-                    <p style="color: var(--text-dim);">Sistema inteligente de detección de riesgo en SLAs para equipos comerciales.</p>
-                    <div id="p2" class="ai-console" style="border-color: var(--purple);">
-                        <div style="color: var(--purple);">[SCANNING_ZONES]</div>
-                        >> Detectando latencia en drivers Zona Sur...<br>
-                        <div style="color: var(--accent); margin-top: 10px;">>> STATUS: SLA Protegido (99.8%).</div>
-                    </div>
-                </div>
-            </div>
         </section>
 
-        <!-- REVIEWS -->
         <section class="reviews-grid">
             <div class="rev-card hover-lift">
                 <div style="color:#f4c20d; margin-bottom: 15px;">★★★★★</div>
@@ -242,19 +226,17 @@
         </section>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="f-icons">
-                <a href="https://github.com/stiflerGlindo" target="_blank" class="hover-lift"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/stiward-orozco-galindo-39bb95165" target="_blank" class="hover-lift"><i class="fab fa-linkedin"></i></a>
-                <a href="https://wa.me/573016501742" target="_blank" class="hover-lift"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://github.com/stiflerGlindo" target="_blank" rel="noopener noreferrer" class="hover-lift"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/stiward-orozco-galindo-39bb95165" target="_blank" rel="noopener noreferrer" class="hover-lift"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/573016501742" target="_blank" rel="noopener noreferrer" class="hover-lift"><i class="fab fa-whatsapp"></i></a>
             </div>
             <p style="font-family: var(--font-mono); font-size: 0.65rem; opacity: 0.4;">STIWARD OROZCO GALINDO // B2B COMMERCIAL ARCHITECT // 2025</p>
         </div>
     </footer>
 
-    <!-- BOT -->
     <div class="bot-trigger hover-lift" onclick="toggleChat()"><i class="fas fa-robot"></i></div>
     <div class="chat-ui" id="chat-ui">
         <div class="chat-h">
@@ -271,6 +253,13 @@
     </div>
 
     <script>
+        // INPUT SANITIZATION UTILITY
+        function sanitize(str) {
+            const temp = document.createElement('div');
+            temp.textContent = str;
+            return temp.innerHTML;
+        }
+
         function calculateEBITDA() {
             const val = document.getElementById('roi-val').value;
             const res = document.getElementById('roi-res');
@@ -295,10 +284,7 @@
                 if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
                 if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
             }
-            draw() {
-                ctx.beginPath(); ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2);
-                ctx.fillStyle = '#00f2ff'; ctx.fill();
-            }
+            draw() { ctx.beginPath(); ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2); ctx.fillStyle = '#00f2ff'; ctx.fill(); }
         }
         for(let i=0; i<85; i++) particles.push(new Particle());
         function animate() {
@@ -315,19 +301,23 @@
         function sendChat() {
             const input = document.getElementById('chat-in');
             const logs = document.getElementById('chat-logs');
-            const q = input.value.trim().toLowerCase();
-            if(!q) return;
-            const uM = document.createElement('div'); uM.className = 'm m-user'; uM.innerText = input.value;
+            const rawQ = input.value.trim();
+            if(!rawQ) return;
+            
+            const q = sanitize(rawQ).toLowerCase();
+            const uM = document.createElement('div'); uM.className = 'm m-user'; uM.innerText = rawQ;
             logs.appendChild(uM); input.value = "";
+            
             setTimeout(() => {
                 const bM = document.createElement('div'); bM.className = 'm m-bot';
                 let r = "Analizando tu requerimiento corporativo... Stiward puede escalar tu rentabilidad mediante arquitecturas de IA.";
                 if(q.includes("si") || q.includes("cita") || q.includes("cv") || q.includes("hoja")) {
-                    r += "<br><br><a href='CV_Stiward_Orozco.html' target='_blank' style='display:inline-block; background:var(--accent); color:black; padding:10px 15px; border-radius:10px; text-decoration:none; font-weight:800; margin-right:10px;'>VER CV INTERACTIVO</a>";
-                    r += "<a href='https://wa.me/573016501742' target='_blank' style='display:inline-block; background:var(--success); color:white; padding:10px 15px; border-radius:10px; text-decoration:none; font-weight:800;'>WHATSAPP</a>";
+                    r += "<br><br><a href='CV_Stiward_Orozco.html' target='_blank' rel='noopener noreferrer' style='display:inline-block; background:var(--accent); color:black; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:800; margin-right:10px;'>VER CV INTERACTIVO</a>";
+                    r += "<a href='https://wa.me/573016501742' target='_blank' rel='noopener noreferrer' style='display:inline-block; background:var(--success); color:white; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:800;'>WHATSAPP</a>";
                 }
                 bM.innerHTML = r; logs.appendChild(bM); logs.scrollTop = logs.scrollHeight;
             }, 800);
+            logs.scrollTop = logs.scrollHeight;
         }
         document.getElementById('chat-in').addEventListener('keypress', (e) => { if(e.key === 'Enter') sendChat(); });
 

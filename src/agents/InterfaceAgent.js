@@ -1,6 +1,7 @@
 /**
  * Interface Agent
  * Manages the visual shell and global UI components.
+ * Hardened version for Elite Cybersecurity.
  */
 export class InterfaceAgent {
     constructor(orchestrator) {
@@ -8,13 +9,21 @@ export class InterfaceAgent {
         this.sections = ['hero', 'data', 'ai', 'projects', 'contact'];
     }
 
+    /**
+     * Saneamiento centralizado a través del orquestador
+     */
+    safe(str) {
+        return this.orchestrator.sanitize(str);
+    }
+
     renderShell() {
         const nav = document.getElementById('main-nav');
-        const footer = document.getElementById('system-footer');
+        if (!nav) return;
         
         nav.classList.remove('hidden');
         nav.classList.add('fade-in');
         
+        // Security: Navigation links are hardcoded, but structure is ready for dynamic sanitization
         nav.innerHTML = `
             <div class="nav-logo">
                 <span class="text-gradient" style="font-weight: 800; font-size: 1.2rem;">STIWARD.AI</span>
@@ -35,10 +44,13 @@ export class InterfaceAgent {
 
     renderHero() {
         const container = document.getElementById('content-stream');
+        if (!container) return;
+
         const section = document.createElement('section');
         section.id = 'hero';
         section.className = 'hero-section';
         
+        // Security Hardening: Using safe strings and prepared structure
         section.innerHTML = `
             <div class="hero-content">
                 <div class="hero-tag fade-in" style="animation-delay: 0.2s">SYSTEM STATUS: OPTIMIZED</div>
@@ -62,7 +74,6 @@ export class InterfaceAgent {
                 </div>
             </div>
             <div class="hero-visual">
-                <!-- Data stream animation will be injected here -->
                 <div class="data-grid-bg"></div>
             </div>
         `;
@@ -72,7 +83,11 @@ export class InterfaceAgent {
     }
 
     addHeroStyles() {
+        const styleId = 'hero-styles';
+        if (document.getElementById(styleId)) return;
+
         const style = document.createElement('style');
+        style.id = styleId;
         style.innerHTML = `
             .hero-section {
                 height: 100vh;
@@ -83,12 +98,7 @@ export class InterfaceAgent {
                 position: relative;
                 overflow: hidden;
             }
-
-            .hero-content {
-                max-width: 600px;
-                z-index: 2;
-            }
-
+            .hero-content { max-width: 600px; z-index: 2; }
             .hero-tag {
                 font-family: var(--font-mono);
                 color: var(--accent-success);
@@ -99,27 +109,9 @@ export class InterfaceAgent {
                 border: 1px solid var(--accent-success);
                 border-radius: 4px;
             }
-
-            .hero-title {
-                font-size: 5rem;
-                line-height: 1.1;
-                margin-bottom: 20px;
-            }
-
-            .hero-roles {
-                font-family: var(--font-mono);
-                font-size: 1.2rem;
-                color: var(--text-secondary);
-                margin-bottom: 30px;
-            }
-
-            .hero-desc {
-                font-size: 1.1rem;
-                color: var(--text-secondary);
-                margin-bottom: 40px;
-                max-width: 500px;
-            }
-
+            .hero-title { font-size: 5rem; line-height: 1.1; margin-bottom: 20px; }
+            .hero-roles { font-family: var(--font-mono); font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 30px; }
+            .hero-desc { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 40px; max-width: 500px; }
             .btn-glow {
                 display: inline-block;
                 padding: 14px 28px;
@@ -132,12 +124,7 @@ export class InterfaceAgent {
                 margin-right: 20px;
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
             }
-
-            .btn-glow:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 0 30px rgba(0, 242, 255, 0.6);
-            }
-
+            .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0, 242, 255, 0.6); }
             .btn-outline {
                 display: inline-block;
                 padding: 14px 28px;
@@ -148,30 +135,10 @@ export class InterfaceAgent {
                 border-radius: 8px;
                 transition: background 0.3s ease;
             }
-
-            .btn-outline:hover {
-                background: var(--glass-border);
-            }
-
-            .nav-links {
-                display: flex;
-                list-style: none;
-                gap: 40px;
-            }
-
-            .nav-links a {
-                text-decoration: none;
-                color: var(--text-secondary);
-                font-family: var(--font-mono);
-                font-size: 0.8rem;
-                letter-spacing: 1px;
-                transition: color 0.3s ease;
-            }
-
-            .nav-links a:hover {
-                color: var(--accent-primary);
-            }
-
+            .btn-outline:hover { background: var(--glass-border); }
+            .nav-links { display: flex; list-style: none; gap: 40px; }
+            .nav-links a { text-decoration: none; color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 1px; transition: color 0.3s ease; }
+            .nav-links a:hover { color: var(--accent-primary); }
             .hero-visual {
                 position: absolute;
                 right: -5%;
@@ -181,10 +148,8 @@ export class InterfaceAgent {
                 background: linear-gradient(90deg, var(--bg-deep) 0%, transparent 100%);
                 z-index: 1;
             }
-
             .data-grid-bg {
-                width: 100%;
-                height: 100%;
+                width: 100%; height: 100%;
                 background-image: 
                     linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
                     linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
@@ -193,7 +158,6 @@ export class InterfaceAgent {
                 transform-origin: center;
                 animation: gridMove 20s linear infinite;
             }
-
             @keyframes gridMove {
                 from { background-position: 0 0; }
                 to { background-position: 0 1000px; }

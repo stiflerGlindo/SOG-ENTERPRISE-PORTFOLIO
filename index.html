@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!-- 
+  index.html
+  Documento principal del portafolio.
+  Contiene la estructura base, estilos incrustados críticos y la lógica interactiva
+  de la interfaz inicial (Hero, ChatBot, animaciones canvas).
+-->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -253,13 +259,23 @@
     </div>
 
     <script>
-        // INPUT SANITIZATION UTILITY
+        /**
+         * Utilidad de saneamiento de entradas.
+         * Convierte cualquier cadena en texto plano seguro para evitar inyecciones HTML.
+         * 
+         * @param {string} str - Texto de entrada.
+         * @returns {string} Texto seguro.
+         */
         function sanitize(str) {
             const temp = document.createElement('div');
             temp.textContent = str;
             return temp.innerHTML;
         }
 
+        /**
+         * Calcula y proyecta el EBITDA basándose en la inversión ingresada por el usuario.
+         * Actualiza el DOM para mostrar el resultado formateado.
+         */
         function calculateEBITDA() {
             const val = document.getElementById('roi-val').value;
             const res = document.getElementById('roi-res');
@@ -270,23 +286,45 @@
             } else { res.style.display = 'none'; }
         }
 
+        // Configuración y animación del fondo de red neuronal (Canvas)
         const canvas = document.getElementById('neural-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth; 
+        canvas.height = window.innerHeight;
+        
+        /**
+         * Clase Particle
+         * Representa un nodo en la animación de red neuronal de fondo.
+         */
         class Particle {
             constructor() {
-                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.4; this.vy = (Math.random() - 0.5) * 0.4;
+                this.x = Math.random() * canvas.width; 
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.4; 
+                this.vy = (Math.random() - 0.5) * 0.4;
             }
+            /** Actualiza la posición de la partícula rebotando en los bordes. */
             update() {
                 this.x += this.vx; this.y += this.vy;
                 if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
                 if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
             }
-            draw() { ctx.beginPath(); ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2); ctx.fillStyle = '#00f2ff'; ctx.fill(); }
+            /** Dibuja la partícula en el canvas. */
+            draw() { 
+                ctx.beginPath(); 
+                ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2); 
+                ctx.fillStyle = '#00f2ff'; 
+                ctx.fill(); 
+            }
         }
+        
+        // Inicializa el arreglo de partículas
         for(let i=0; i<85; i++) particles.push(new Particle());
+        
+        /**
+         * Bucle principal de animación para el canvas.
+         */
         function animate() {
             ctx.clearRect(0,0,canvas.width, canvas.height);
             particles.forEach(p => { p.update(); p.draw(); });
@@ -294,33 +332,61 @@
         }
         animate();
 
+        /**
+         * Alterna la visibilidad de la ventana del chat UI.
+         */
         function toggleChat() {
             const ui = document.getElementById('chat-ui');
             ui.style.display = (ui.style.display === 'flex') ? 'none' : 'flex';
         }
+
+        /**
+         * Procesa el envío de mensajes por parte del usuario en el chat.
+         * Renderiza la respuesta simulada del bot.
+         */
         function sendChat() {
             const input = document.getElementById('chat-in');
             const logs = document.getElementById('chat-logs');
             const rawQ = input.value.trim();
             if(!rawQ) return;
             
+            // Sanitizamos el texto del usuario para evitar XSS en el chat
             const q = sanitize(rawQ).toLowerCase();
-            const uM = document.createElement('div'); uM.className = 'm m-user'; uM.innerText = rawQ;
-            logs.appendChild(uM); input.value = "";
+            const uM = document.createElement('div'); 
+            uM.className = 'm m-user'; 
+            uM.innerText = rawQ;
             
+            logs.appendChild(uM); 
+            input.value = "";
+            
+            // Simula el tiempo de respuesta del bot
             setTimeout(() => {
-                const bM = document.createElement('div'); bM.className = 'm m-bot';
+                const bM = document.createElement('div'); 
+                bM.className = 'm m-bot';
                 let r = "Analizando tu requerimiento corporativo... Stiward puede escalar tu rentabilidad mediante arquitecturas de IA.";
+                
                 if(q.includes("si") || q.includes("cita") || q.includes("cv") || q.includes("hoja")) {
                     r += "<br><br><a href='CV_Stiward_Orozco.html' target='_blank' rel='noopener noreferrer' style='display:inline-block; background:var(--accent); color:black; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:800; margin-right:10px;'>VER CV INTERACTIVO</a>";
                     r += "<a href='https://wa.me/573016501742' target='_blank' rel='noopener noreferrer' style='display:inline-block; background:var(--success); color:white; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:800;'>WHATSAPP</a>";
                 }
-                bM.innerHTML = r; logs.appendChild(bM); logs.scrollTop = logs.scrollHeight;
+                bM.innerHTML = r; 
+                logs.appendChild(bM); 
+                logs.scrollTop = logs.scrollHeight;
             }, 800);
+            
             logs.scrollTop = logs.scrollHeight;
         }
-        document.getElementById('chat-in').addEventListener('keypress', (e) => { if(e.key === 'Enter') sendChat(); });
+        
+        // Listener para enviar mensaje presionando Enter
+        document.getElementById('chat-in').addEventListener('keypress', (e) => { 
+            if(e.key === 'Enter') sendChat(); 
+        });
 
+        /**
+         * Despliega o colapsa el detalle de un proyecto en la consola interactiva.
+         * 
+         * @param {string} id - El ID de la consola de proyecto a alternar.
+         */
         function triggerProject(id) {
             const el = document.getElementById(id);
             el.style.display = (el.style.display === 'block') ? 'none' : 'block';

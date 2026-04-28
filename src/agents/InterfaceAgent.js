@@ -1,21 +1,33 @@
 /**
  * Interface Agent
- * Manages the visual shell and global UI components.
- * Hardened version for Elite Cybersecurity.
+ * Agente responsable de gestionar el shell visual (navegación y layout principal)
+ * y renderizar el componente Hero de la página.
+ * Versión endurecida para ciberseguridad élite.
  */
 export class InterfaceAgent {
+    /**
+     * Inicializa el agente de interfaz.
+     * 
+     * @param {Object} orchestrator - Instancia del orquestador principal.
+     */
     constructor(orchestrator) {
         this.orchestrator = orchestrator;
         this.sections = ['hero', 'data', 'ai', 'projects', 'contact'];
     }
 
     /**
-     * Saneamiento centralizado a través del orquestador
+     * Saneamiento centralizado de cadenas a través del orquestador.
+     * 
+     * @param {string} str - El texto a sanitizar.
+     * @returns {string} El texto seguro.
      */
     safe(str) {
         return this.orchestrator.sanitize(str);
     }
 
+    /**
+     * Renderiza el shell principal de navegación y, a continuación, invoca el renderizado del Hero.
+     */
     renderShell() {
         const nav = document.getElementById('main-nav');
         if (!nav) return;
@@ -42,6 +54,9 @@ export class InterfaceAgent {
         this.renderHero();
     }
 
+    /**
+     * Construye e inyecta la sección principal o "Hero" en el stream de contenido.
+     */
     renderHero() {
         const container = document.getElementById('content-stream');
         if (!container) return;
@@ -82,6 +97,9 @@ export class InterfaceAgent {
         this.addHeroStyles();
     }
 
+    /**
+     * Inyecta dinámicamente los estilos CSS específicos para la navegación y la sección Hero.
+     */
     addHeroStyles() {
         const styleId = 'hero-styles';
         if (document.getElementById(styleId)) return;
@@ -89,6 +107,7 @@ export class InterfaceAgent {
         const style = document.createElement('style');
         style.id = styleId;
         style.innerHTML = `
+            /* --- Layout Principal --- */
             .hero-section {
                 height: 100vh;
                 display: flex;
@@ -99,6 +118,18 @@ export class InterfaceAgent {
                 overflow: hidden;
             }
             .hero-content { max-width: 600px; z-index: 2; }
+            .hero-visual {
+                position: absolute;
+                right: -5%;
+                top: 0;
+                width: 50%;
+                height: 100%;
+                background: linear-gradient(90deg, var(--bg-deep) 0%, transparent 100%);
+                z-index: 1;
+            }
+            .nav-links { display: flex; list-style: none; gap: 40px; }
+            
+            /* --- Tipografía y Elementos Visuales --- */
             .hero-tag {
                 font-family: var(--font-mono);
                 color: var(--accent-success);
@@ -112,6 +143,10 @@ export class InterfaceAgent {
             .hero-title { font-size: 5rem; line-height: 1.1; margin-bottom: 20px; }
             .hero-roles { font-family: var(--font-mono); font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 30px; }
             .hero-desc { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 40px; max-width: 500px; }
+            .nav-links a { text-decoration: none; color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 1px; transition: color 0.3s ease; }
+            .nav-links a:hover { color: var(--accent-primary); }
+            
+            /* --- Botones --- */
             .btn-glow {
                 display: inline-block;
                 padding: 14px 28px;
@@ -136,18 +171,8 @@ export class InterfaceAgent {
                 transition: background 0.3s ease;
             }
             .btn-outline:hover { background: var(--glass-border); }
-            .nav-links { display: flex; list-style: none; gap: 40px; }
-            .nav-links a { text-decoration: none; color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 1px; transition: color 0.3s ease; }
-            .nav-links a:hover { color: var(--accent-primary); }
-            .hero-visual {
-                position: absolute;
-                right: -5%;
-                top: 0;
-                width: 50%;
-                height: 100%;
-                background: linear-gradient(90deg, var(--bg-deep) 0%, transparent 100%);
-                z-index: 1;
-            }
+            
+            /* --- Animaciones de Fondo --- */
             .data-grid-bg {
                 width: 100%; height: 100%;
                 background-image: 

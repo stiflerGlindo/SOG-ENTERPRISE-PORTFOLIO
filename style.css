@@ -1,3 +1,8 @@
+/* 
+ * style.css
+ * Hoja de estilos principal del proyecto. Define variables globales,
+ * tipografía, utilidades y componentes base del diseño.
+ */
 :root {
     /* Color Palette */
     --bg-deep: #05070a;
